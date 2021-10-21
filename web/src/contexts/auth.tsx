@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import { GITHUB_CLIENT_ID } from "../global/info";
 import { api } from "../services/api";
 
 interface IAuthProvider {
@@ -31,7 +32,7 @@ interface IAuthResponse {
 const AuthContext = createContext({} as IAuthContextData);
 
 export function AuthProvider({ children }: IAuthProvider) {
-    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=7c33feca26a57c5ce701`
+    const signInUrl = `https://github.com/login/oauth/authorize?scope=user&client_id=${GITHUB_CLIENT_ID}`
     const [user, setUser] = useState<IUser | null>(null);
 
     async function signIn(githubCode: string){
